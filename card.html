@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="card.css" />
+</head>
+
+<body>
+  <form action="#" class="search-weather-form">
+    <input type="text" class="input-location" placeholder="Enter the city">
+    <button type="submit">Search</button>
+  </form>
+  <div class="container">
+    <!-- Common -->
+    <div class="card card-sunshine">
+      <!-- Rain Card -->
+      <!-- Cloud and Thunder -->
+      <div class="image-container-wrapper cloud-thunder">
+        <div class="image-container">
+          <div class="thunder">
+            <img src="./images/thunder.svg" alt="Thunder" />
+          </div>
+          <img src="./images/cloud.svg" alt="Cloud SVG" />
+        </div>
+      </div>
+
+      <!-- Rain drops -->
+      <div class="rain-drops">
+        <span class="drops"></span><span class="drops"></span><span class="drops"></span>
+      </div>
+      <div class="rain-drops">
+        <span class="drops drop-1"></span><span class="drops drop-3"></span><span class="drops drop-3"></span>
+      </div>
+      <div class="rain-drops">
+        <span class="drops"></span><span class="drops"></span>
+      </div>
+      <div class="rain-drops">
+        <span class="drops"></span><span class="drops"></span><span class="drops"></span>
+      </div>
+      <div class="rain-drops">
+        <span class="drops"></span><span class="drops"></span><span class="drops"></span>
+      </div>
+      <!-- ------------------- -->
+      <!-- Sunshine Card -->
+      <!-- Circles -->
+      <span class="circle circle-top-right-1"></span>
+      <span class="circle circle-top-right-2"></span>
+      <span class="circle sun"></span>
+      <!-- -------------------------- -->
+
+      <!-- Cloudy Night Card -->
+      <!-- CLoud and Moon -->
+      <div class="image-container-wrapper cloud-moon">
+        <div class="image-container">
+          <div class="moon"></div>
+          <img src="./images/cloud.svg" alt="Cloud SVG" />
+        </div>
+      </div>
+      <!-- ----------- -->
+
+      <!-- Card content -->
+      <p class="weather">Sunny</p>
+      <div class="card-content">
+        <p class="condition">25&deg;</p>
+
+        <div class="col-divider">
+          <span></span>
+        </div>
+        <div class="day-location">
+          <span class="date">Monday, 21 september</span>
+          <div class="location">
+            <img src="./images/location-icon.svg" alt="location icon" /> San Fransisco
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.mjs"></script>
+</body>
+
+</html>

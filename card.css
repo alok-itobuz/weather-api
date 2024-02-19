@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 62.5%;
+  height: 100vh;
+  padding: 3rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+form input,
+form button {
+  padding: 0.4rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+form input {
+  border: 1px solid rgb(84, 84, 5);
+  font-weight: 400;
+}
+form button {
+  border: 1px solid yellow;
+  background: yellow;
+}
+
+.container {
+  max-width: 50rem;
+  height: 100%;
+  aspect-ratio: 2/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 5rem;
+  font-weight: 300;
+  margin: auto;
+}
+.container .card {
+  width: 100%;
+  aspect-ratio: 10/3;
+  border-radius: 25px;
+  position: relative;
+  color: #fff;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.container .card > p {
+  font-size: 1.5rem;
+}
+.container .card .card-content {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.container .card .card-content .condition {
+  font-size: 4.3rem;
+  position: relative;
+}
+.container .card .card-content .col-divider {
+  width: 1rem;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.container .card .card-content .col-divider span {
+  width: 20%;
+  height: 50%;
+  background: #fff;
+  border-radius: 50%;
+}
+.container .card .card-content .day-location {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .card .card-content .day-location .date {
+  flex: 1;
+  font-size: 1.5rem;
+}
+.container .card .card-content .day-location > div {
+  flex: 1;
+  font-size: 1.5rem;
+}
+.container .card .card-content .day-location > div img {
+  height: 1rem;
+}
+.container .card-sunshine {
+  background: linear-gradient(90deg, #2667f2, #62cff4);
+}
+.container .card-sunshine .dots,
+.container .card-sunshine .cloud-moon,
+.container .card-sunshine .cloud-thunder,
+.container .card-sunshine .rain-drops {
+  display: none;
+}
+.container .card-sunshine .circle {
+  position: absolute;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.container .card-sunshine .circle-top-right-1,
+.container .card-sunshine .circle-top-right-2 {
+  background: rgba(160, 216, 255, 0.6666666667);
+  height: 135%;
+  right: -13%;
+  top: -36%;
+}
+.container .card-sunshine .circle-top-right-2 {
+  background: rgba(130, 201, 255, 0.6666666667);
+  height: 145%;
+  right: -8%;
+  top: -36%;
+}
+.container .card-sunshine .sun {
+  height: 85%;
+  background: #fff;
+  right: -2rem;
+  top: -2rem;
+  z-index: 2;
+  background: radial-gradient(circle at 5% 10%, #fcfcb3 50px, rgba(233, 64, 8, 0.6) 160px);
+}
+.container .card-cloudy-night {
+  background: linear-gradient(90deg, #2862f7, #b97fda);
+}
+.container .card-cloudy-night .circle,
+.container .card-cloudy-night .cloud-thunder,
+.container .card-cloudy-night .rain-drops:not(:nth-of-type(2), :nth-of-type(3)) {
+  display: none;
+}
+.container .card-cloudy-night .image-container-wrapper {
+  position: absolute;
+  height: 95%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -2%;
+}
+.container .card-cloudy-night .image-container-wrapper .image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.container .card-cloudy-night .image-container-wrapper .image-container .moon {
+  height: 40%;
+  aspect-ratio: 1/1;
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 76% 27%, rgba(81, 60, 63, 0) 34px, rgb(255, 177, 5) 30px, rgb(199, 193, 128) 70px);
+  z-index: 2;
+  top: 3%;
+  right: 3%;
+}
+.container .card-cloudy-night .image-container-wrapper .image-container img {
+  height: 100%;
+  transform: rotateY(180deg);
+}
+.container .card-cloudy-night .drops {
+  position: absolute;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3333333333);
+  box-shadow: 0 0 8px #fff;
+}
+.container .card-cloudy-night .drops:nth-child(1) {
+  height: 10px;
+  right: 40%;
+  top: 10%;
+}
+.container .card-cloudy-night .drops:nth-of-type(2) {
+  height: 20px;
+  right: 30%;
+  top: 20%;
+}
+.container .card-cloudy-night .drops:nth-of-type(3) {
+  height: 8px !important;
+  right: 15% !important;
+  top: 10% !important;
+}
+.container .card-cloudy-night .drop-1 {
+  height: 9px !important;
+  right: 32% !important;
+  top: 50% !important;
+}
+.container .card-cloudy-night .drop-2 {
+  height: 5px !important;
+  right: 29% !important;
+  top: 70% !important;
+}
+.container .card-cloudy-night .drop-3 {
+  height: 17px !important;
+  right: 40% !important;
+  top: 80% !important;
+}
+.container .card-rain {
+  background: linear-gradient(90deg, #01bea4, #8dfba3);
+}
+.container .card-rain .circle,
+.container .card-rain .cloud-moon,
+.container .card-rain .dots {
+  display: none;
+}
+.container .card-rain .image-container-wrapper {
+  position: absolute;
+  height: 95%;
+  top: -25%;
+  right: -2%;
+}
+.container .card-rain .image-container-wrapper .image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.container .card-rain .image-container-wrapper .image-container .thunder {
+  position: absolute;
+  height: 40%;
+  top: 76%;
+  left: 50%;
+  transform: translateX(-48%) rotateY(180deg);
+  z-index: 2;
+}
+.container .card-rain .image-container-wrapper .image-container img {
+  height: 100%;
+  transform: rotateY(180deg);
+}
+.container .card-rain .rain-drops {
+  position: absolute;
+  height: 1rem;
+  width: 15rem;
+  top: 90%;
+  transform: rotate(-65deg);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.container .card-rain .rain-drops .drops {
+  height: 50%;
+  aspect-ratio: 4/1;
+  border-radius: 50% 10% 10% 50%;
+  background: rgba(255, 255, 255, 0.3333333333);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+.container .card-rain .rain-drops:nth-of-type(1) {
+  right: -21.5%;
+}
+.container .card-rain .rain-drops:nth-of-type(2) {
+  right: -13%;
+}
+.container .card-rain .rain-drops:nth-of-type(3) {
+  right: -4.5%;
+}
+.container .card-rain .rain-drops:nth-of-type(4) {
+  right: 4%;
+}
+.container .card-rain .rain-drops:nth-of-type(5) {
+  right: 12.5%;
+}
+.container .card-rain .rain-drops:nth-of-type(6) {
+  right: 21%;
+}
+.container .card-rain .rain-drops:nth-of-type(6) {
+  right: 18%;
+  top: 50%;
+}/*# sourceMappingURL=card.css.map */

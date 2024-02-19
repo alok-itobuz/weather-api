@@ -1,0 +1,326 @@
+$blue_color: #2667f2;
+$light_blue_color: #62cff4;
+$deep_blue_color: #2862f7;
+$purple_color: #b97fda;
+$green_color: #01bea4;
+$light_green_color: #8dfba3;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 62.5%;
+  height: 100vh;
+  padding: 3rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  input,
+  button {
+    padding: .4rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+
+  }
+
+  input {
+    border: 1px solid rgb(84, 84, 5);
+    font-weight: 400;
+  }
+
+  button {
+    border: 1px solid yellow;
+    background: yellow;
+  }
+
+}
+
+.container {
+  max-width: 50rem;
+  height: 100%;
+  aspect-ratio: 2/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 5rem;
+  font-weight: 300;
+  margin: auto;
+
+  // Common Properties
+  .card {
+    width: 100%;
+    aspect-ratio: 10/3;
+    border-radius: 25px;
+    position: relative;
+    color: #fff;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    >p {
+      font-size: 1.5rem;
+    }
+
+    .card-content {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
+      .condition {
+        font-size: 4.3rem;
+        position: relative;
+      }
+
+      .col-divider {
+        width: 1rem;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          width: 20%;
+          height: 50%;
+          background: #fff;
+          border-radius: 50%;
+        }
+      }
+
+      .day-location {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .date {
+          flex: 1;
+          font-size: 1.5rem;
+        }
+
+        >div {
+          flex: 1;
+          font-size: 1.5rem;
+
+          img {
+            height: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  // Individual Cards Styling
+
+  // Card Sunshine
+  .card-sunshine {
+    background: linear-gradient(90deg, $blue_color, $light_blue_color);
+
+    .dots,
+    .cloud-moon,
+    .cloud-thunder,
+    .rain-drops {
+      display: none;
+    }
+
+    .circle {
+      position: absolute;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+    }
+
+    .circle-top-right-1,
+    .circle-top-right-2 {
+      background: #a0d8ffaa;
+      height: 135%;
+      right: -13%;
+      top: -36%;
+    }
+
+    .circle-top-right-2 {
+      background: #82c9ffaa;
+      height: 145%;
+      right: -8%;
+      top: -36%;
+    }
+
+    .sun {
+      height: 85%;
+      background: #fff;
+      right: -2rem;
+      top: -2rem;
+      z-index: 2;
+      background: radial-gradient(circle at 5% 10%,
+          #fcfcb3 50px,
+          rgba(233, 64, 8, 0.6) 160px);
+    }
+  }
+
+  // Card Cloudy Night
+  .card-cloudy-night {
+    background: linear-gradient(90deg, $deep_blue_color, $purple_color);
+
+    .circle,
+    .cloud-thunder,
+    .rain-drops:not(:nth-of-type(2), :nth-of-type(3)) {
+      display: none;
+    }
+
+    .image-container-wrapper {
+      position: absolute;
+      height: 95%;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -2%;
+
+      .image-container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+        .moon {
+          height: 40%;
+          aspect-ratio: 1/1;
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(circle at 76% 27%,
+              rgba(81, 60, 63, 0) 34px,
+              rgb(255, 177, 5) 30px,
+              rgb(199, 193, 128) 70px);
+          z-index: 2;
+          top: 3%;
+          right: 3%;
+        }
+
+        img {
+          height: 100%;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+
+    .drops {
+      position: absolute;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      border: none;
+      background: #fff5;
+      box-shadow: 0 0 8px #fff;
+    }
+
+    .drops:nth-child(1) {
+      height: 10px;
+      right: 40%;
+      top: 10%;
+    }
+
+    .drops:nth-of-type(2) {
+      height: 20px;
+      right: 30%;
+      top: 20%;
+    }
+
+    .drops:nth-of-type(3) {
+      height: 8px !important;
+      right: 15% !important;
+      top: 10% !important;
+    }
+
+    .drop-1 {
+      height: 9px !important;
+      right: 32% !important;
+      top: 50% !important;
+    }
+
+    .drop-2 {
+      height: 5px !important;
+      right: 29% !important;
+      top: 70% !important;
+    }
+
+    .drop-3 {
+      height: 17px !important;
+      right: 40% !important;
+      top: 80% !important;
+    }
+  }
+
+  // Card Rain
+  .card-rain {
+    background: linear-gradient(90deg, $green_color, $light_green_color);
+
+    .circle,
+    .cloud-moon,
+    .dots {
+      display: none;
+    }
+
+    .image-container-wrapper {
+      position: absolute;
+      height: 95%;
+      top: -25%;
+      right: -2%;
+
+      .image-container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+        .thunder {
+          position: absolute;
+          height: 40%;
+          top: 76%;
+          left: 50%;
+          transform: translateX(-48%) rotateY(180deg);
+          z-index: 2;
+        }
+
+        img {
+          height: 100%;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+
+    .rain-drops {
+      position: absolute;
+      height: 1rem;
+      width: 15rem;
+      top: 90%;
+      transform: rotate(-65deg);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .drops {
+        height: 50%;
+        aspect-ratio: 4/1;
+        border-radius: 50% 10% 10% 50%;
+        background: #fff5;
+        box-shadow: 0 0 8px #fff9;
+      }
+
+      @for $i from 1 through 6 {
+        &:nth-of-type(#{$i}) {
+          right: $i * 8.5 - 30%;
+        }
+      }
+
+      &:nth-of-type(6) {
+        right: 18%;
+        top: 50%;
+      }
+    }
+  }
+}
