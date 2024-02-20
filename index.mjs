@@ -5,65 +5,94 @@ const textTemperature = document.querySelector(".condition");
 const textDate = document.querySelector(".date");
 const textLocation = document.querySelector(".location");
 
+let prevClassName = "";
+
+function renderPage(res) {
+  const {
+    current: {
+      temp_c: temperature,
+      condition: { text: cond },
+      is_day: isDay,
+      last_updated: date,
+    },
+    location: { name: cityName },
+  } = res;
+
+  const myDate = new Date(date);
+  const splittedDate = myDate.toString().split(" ").slice(0, 3);
+  const formattedDate = `${splittedDate[0]}, ${splittedDate
+    .slice(1)
+    .join(" ")}`;
+
+  // condition
+  let classAndCondition = { className: "", condition: "" };
+  if (cond.includes("cloud"))
+    classAndCondition = {
+      className: "card-cloudy-night",
+      condition: "Cloudy",
+    };
+  else if (cond.includes("Rain") || cond.includes("Mist"))
+    classAndCondition = {
+      className: "card-rain",
+      condition: "Rainy",
+    };
+  else if (cond.includes("Sun") || cond.includes("Clear"))
+    classAndCondition = {
+      className: "card-sunshine",
+      condition: "Sunny",
+    };
+  if (!classAndCondition.className) throw new Error("Unknown weather");
+
+  prevClassName
+    ? card.classList.replace(prevClassName, classAndCondition.className)
+    : card.classList.add(classAndCondition.className);
+  prevClassName = classAndCondition.className;
+
+  textWeather.textContent = classAndCondition.condition;
+  textLocation.textContent = cityName;
+  textDate.textContent = formattedDate;
+  textTemperature.innerHTML = `${temperature}&deg;`;
+}
+
 async function fetchApi(city) {
   const capitalizedCity = city[0].toUpperCase() + city.slice(1);
   const url = `https://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${capitalizedCity}&aqi=no`;
 
   try {
     card.style.visibility = "visible";
-    const res = await (await fetch(url)).json();
+    const resjson = await fetch(url);
+    if (!resjson.ok) throw new Error("No city found in this name");
+    const res = await resjson.json();
 
-    if (res.error) throw new Error("No data found");
-    const {
-      current: {
-        temp_c: temperature,
-        condition: { text: cond },
-        is_day: isDay,
-        last_updated: date,
-      },
-      location: { name: cityName },
-    } = res;
-
-    const myDate = new Date(date);
-    const splittedDate = myDate.toString().split(" ").slice(0, 3);
-    const formattedDate = `${splittedDate[0]}, ${splittedDate
-      .slice(1)
-      .join(" ")}`;
-
-    // condition
-    let classAndCondition = { className: "", condition: "" };
-    if (cond.includes("cloud"))
-      classAndCondition = {
-        className: "card-cloudy-night",
-        condition: "Cloudy",
-      };
-    else if (cond.includes("Rain") || cond.includes("Mist"))
-      classAndCondition = {
-        className: "card card-rain",
-        condition: "Rainy",
-      };
-    else if (cond.includes("Sun") || cond.includes("Clear"))
-      classAndCondition = {
-        className: "card card-sunshine",
-        condition: "Sunny",
-      };
-
-    ///
-    card.className = `card ${classAndCondition.className}`;
-    textWeather.textContent = classAndCondition.condition;
-    textLocation.textContent = cityName;
-    textDate.textContent = formattedDate;
-    textTemperature.innerHTML = `${temperature}&deg;`;
+    renderPage(res);
   } catch (error) {
-    console.log(error);
+    alert(error);
     card.style.visibility = "hidden";
   }
 }
 
+async function fetchApiXML(city) {
+  const capitalizedCity = city[0].toUpperCase() + city.slice(1);
+  const url = `https://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${capitalizedCity}&aqi=no`;
+
+  const request = new XMLHttpRequest();
+  request.open("GET", url);
+  request.send();
+
+  request.addEventListener("error", function (e) {
+    console.log(e, this);
+  });
+  request.addEventListener("load", function (e) {
+    renderPage(JSON.parse(this.responseText));
+  });
+}
 searchWeatherForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const [inputLocation] = e.target;
-  fetchApi(inputLocation.value);
+  // fetchApi(inputLocation.value);
+  fetchApiXML(inputLocation.value);
   inputLocation.value = "";
   inputLocation.blur();
 });
+
+fetchApi("london");

@@ -34,6 +34,7 @@ form button {
 
 .container {
   max-width: 50rem;
+  min-height: 25rem;
   height: 100%;
   aspect-ratio: 2/1;
   display: flex;
