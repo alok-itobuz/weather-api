@@ -71,28 +71,10 @@ async function fetchApi(city) {
   }
 }
 
-async function fetchApiXML(city) {
-  const capitalizedCity = city[0].toUpperCase() + city.slice(1);
-  const url = `https://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${capitalizedCity}&aqi=no`;
-
-  const request = new XMLHttpRequest();
-  request.open("GET", url);
-  request.send();
-
-  request.addEventListener("error", function (e) {
-    console.log(e, this);
-  });
-  request.addEventListener("load", function (e) {
-    renderPage(JSON.parse(this.responseText));
-  });
-}
 searchWeatherForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const [inputLocation] = e.target;
-  // fetchApi(inputLocation.value);
-  fetchApiXML(inputLocation.value);
+  fetchApi(inputLocation.value);
   inputLocation.value = "";
   inputLocation.blur();
 });
-
-fetchApi("london");
