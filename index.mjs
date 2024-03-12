@@ -9,13 +9,11 @@ let prevClassName = "";
 
 function renderPage(res) {
   const {
-    current: {
-      temp_c: temperature,
-      condition: { text: cond },
-      last_updated: date,
-    },
-    location: { name: cityName },
-  } = res;
+    temp_c: temperature,
+    condition: cond,
+    last_updated: date,
+    name: cityName,
+  } = res.data;
 
   const myDate = new Date(date);
   const splittedDate = myDate.toString().split(" ").slice(0, 3);
@@ -46,6 +44,7 @@ function renderPage(res) {
     ? card.classList.replace(prevClassName, classAndCondition.className)
     : card.classList.add(classAndCondition.className);
   prevClassName = classAndCondition.className;
+  card.classList.remove("d-none");
 
   textWeather.textContent = classAndCondition.condition;
   textLocation.textContent = cityName;
@@ -54,8 +53,7 @@ function renderPage(res) {
 }
 
 async function fetchApi(city) {
-  const capitalizedCity = city[0].toUpperCase() + city.slice(1);
-  const url = `https://api.weatherapi.com/v1/current.json?key=0c80b2b56f1943ada19100744230103&q=${capitalizedCity}&aqi=no`;
+  const url = `http://127.0.0.1:3000/api/weather/${city}`;
 
   try {
     card.style.visibility = "visible";
@@ -65,11 +63,9 @@ async function fetchApi(city) {
 
     renderPage(res);
   } catch (error) {
-    alert(error);
     card.style.visibility = "hidden";
   }
 }
-
 searchWeatherForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const [inputLocation] = e.target;
