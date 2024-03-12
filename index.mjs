@@ -12,7 +12,6 @@ function renderPage(res) {
     current: {
       temp_c: temperature,
       condition: { text: cond },
-      is_day: isDay,
       last_updated: date,
     },
     location: { name: cityName },
